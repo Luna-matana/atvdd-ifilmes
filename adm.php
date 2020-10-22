@@ -1,5 +1,5 @@
 <?php
- include 'conexao.php'; 
+ include 'classes/Conexao.class.php'; 
  include "funcoes.php";  
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-<div class="container-fluid"> <!-- Bootstrap, usado para o container fluir com o tamanho da janela eou com mobile -->
+<div class="container-fluid"> <!-- Bootstrap, usado para o container fluir com o tamanho da janela e/ou com mobile -->
 <div class="row">
 
   <!-- nav -->    	
