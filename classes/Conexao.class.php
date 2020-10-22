@@ -1,14 +1,25 @@
 <?php
 include 'error.php';
 class Conexao{
+    private $con;
 
-    public function get_conexao(){
+    function get_conexao(){
         try {
-        $con = new PDO("mysql:host=localhost;dbname=localdb", "root", "holy2905");
+        $this->con = new PDO("mysql:host=localhost;dbname=localdb", "root", "holy2905");
         } catch (PDOException $erro) {
                 echo $erro -> getMessage();
         }
-        return $con;
+        return $this->con;
+    }
+
+    function executaQuery($query){
+        $conec = $this->get_conexao();
+        return $conec->query($query);
+    }
+
+    function exclui($query){
+        $conec = $this->get_conexao();
+        $conec->query($query);
     }
 }
 
