@@ -85,7 +85,7 @@ $funcao = new Funcoes();
     </tbody>                     	
   </table>                      
   <hr>
-    <a class="btn btn-info" href="<?php echo "imprimir_filme.php?opcao=1"; ?>" role="button">Imprimir Listagem de Filmes</a>  
+    <a class="btn btn-info" href="<?php echo "viewr/viewrImprime.php?opcao=1"; ?>" target="_blank" role="button">Imprimir Listagem de Filmes</a>  
   <hr>
   <!-- /lista -->
   <hr />

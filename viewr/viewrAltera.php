@@ -8,7 +8,6 @@ include_once("../classes/error.php");
         $trailer	= $_REQUEST['trailer'];
         $codigo		= $_REQUEST['codigo'];
         $query = "UPDATE filme SET titulo='$titulo', sinopse='$sinopse',quantidade='$quantidade',trailer='$trailer' where codigo=".$codigo;
-        echo $query;
-        $func->alterafilme($codigo);
+        $func->alterafilme($query);
     }
 ?>
