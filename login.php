@@ -1,5 +1,5 @@
 <div class="container-sm">	
-	<form action="viewr/viewrLogin.php" method="POST" >
+	<form action=<?php ?> method="POST" >
 		<div class="form-group">
 			<label for="email">E-mail</label>
 			<input type="email" class="form-control" id="email" name="email" required>

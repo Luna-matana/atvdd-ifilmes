@@ -1,7 +1,6 @@
 <?php
 include_once("Conexao.class.php");
 include_once("classes/Funcoes.class.php"); 
- include "classes/error.php";
 $funcao = new Funcoes();
 ?>
 <!DOCTYPE html>
