@@ -1,8 +1,11 @@
 <?php
-include_once("Conexao.class.php");
-include_once("classes/Funcoes.class.php"); 
-$funcao = new Funcoes();
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
+include_once("controllers/FilmeControler.php");
+$filme = new FilmeControler();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,30 +31,30 @@ $funcao = new Funcoes();
   <!-- formulario -->
   <div class="column col-sm-7">
     <div class="page-header text-muted">Filmes </div>
-      <form class="form-horizontal" action="<?php echo $funcao->getAction(); ?>" method="post"> 
+      <form class="form-horizontal" action="<?php echo $filme->getAction(); ?>" method="post"> 
         <fieldset>
           <!-- Form Name -->
-          <legend><?php echo $funcao->getLegenda();?> Filme</legend>
+          <legend><?php echo $filme->getLegenda();?> Filme</legend>
 
           <!-- Text input-->
           <div class="form-group">
             <label for="titulofilme">Filme</label>
-            <input type="text" class="form-control" id="titulofilme" name="titulofilme" value="<?php echo $funcao->getTitulo(); ?>" >
+            <input type="text" class="form-control" id="titulofilme" name="titulofilme" value="<?php echo $filme->getTitulo(); ?>" >
           </div>
           <!-- Textarea -->
           <div class="form-group">
             <label for="sinopse">Sinopse</label>
-            <textarea id="sinopse" name="sinopse"> <?php echo $funcao->getSinopse(); ?>  </textarea>
+            <textarea id="sinopse" name="sinopse"> <?php echo $filme->getSinopse(); ?>  </textarea>
           </div>
           <!-- Text input-->
           <div class="form-group">
             <label for="quantidade">Quantidade</label>
-            <input type="text" class="form-control" id="quantidade" name="quantidade" value="<?php echo $funcao->getQuantidade(); ?>"  class="input-xxlarge">
+            <input type="text" class="form-control" id="quantidade" name="quantidade" value="<?php echo $filme->getQuantidade(); ?>"  class="input-xxlarge">
           </div>
           <!-- Text input-->
           <div class="form-group">
             <label for="trailer">Trailer</label>
-            <input type="text" class="form-control" id="trailer" name="trailer" value="<?php echo $funcao->getTrailer(); ?>"  class="input-xxlarge">
+            <input type="text" class="form-control" id="trailer" name="trailer" value="<?php echo $filme->getTrailer(); ?>"  class="input-xxlarge">
           </div> 
           <!-- Button -->
           <div class="form-group">
@@ -79,7 +82,7 @@ $funcao = new Funcoes();
     </thead>
     <tbody>
       <?php                       
-        $funcao->imprimeFilmes();  //Lista filmes no banco    
+        $filme->imprimeFilmes();  //Lista filmes no banco    
       ?>   
     </tbody>                     	
   </table>                      

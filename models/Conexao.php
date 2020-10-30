@@ -1,18 +1,16 @@
 <?php
-Class Conexao{
-    private static $conexao;
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+class Conexao{
+    private $con;
 
-    private function __construct(){
-
-    }
-
-    public static function getConection(){
-        if(is_null(self::$conexao)){
-            self::$conexao = new PDO("mysql:"."host=localhost;"."dbname=localdb"."root"."holy2905");
-            self::$conexao->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            self::$conexao->exec('set names utf8');
+    function get_conexao(){
+        try {
+        $this->con = new PDO("mysql:host=localhost;dbname=localdb", "root", "holy2905");
+        } catch (PDOException $erro) {
+                echo $erro -> getMessage();
         }
-        return self::$conexao;
+        return $this->con;
     }
 }
 ?>
