@@ -39,8 +39,9 @@ class Filme{
         } else {     
             $this->action = "viewr/viewrAltera.php?codigo=".$_REQUEST['codigo'];
             $this->legenda = "Alterar";
-            $query = "SELECT * FROM filme WHERE codigo = ".$_REQUEST['codigo'];    
-            $result = $this->con->executaQuery($query);
+            $query = "SELECT * FROM filme WHERE codigo = ".$_REQUEST['codigo'];
+            $con = (new Conexao())->get_conexao(); 
+            $result = $con->query($query);
             $linha = $result->fetch(PDO::FETCH_OBJ);
             $this->titulofilme = $linha->titulo;
             $this->sinopse     = $linha->sinopse;
@@ -63,6 +64,16 @@ class Filme{
             <td><a class="btn btn-danger" href="viewr/viewrExclui.php?codigo='.$linha->codigo.'" role="button">Excluir</a></td>
             </tr>';
         }
+    }
+
+    function excluirFilme(){
+        $codigo	= $_REQUEST['codigo'];	
+        $con = (new Conexao())->get_conexao();
+        //query
+        $query = "DELETE FROM filme WHERE codigo=".$codigo;
+        $con->query($query);
+        //$this->con->exclui($query);
+        header('Location:../adm.php');		
     }
 
     public function getLegenda(){
