@@ -30,14 +30,14 @@ class Filme{
     private function retornaFilmes(){
         //acesso ao banco e tabelas do sistema
         if(!isset($_REQUEST['codigo'])){
-            $this->action = "inserir_filme.php";
+            $this->action = "auxiliar.php?incluir=1";
             $this->legenda = "Incluir";
             $this->titulofilme = "";
             $this->sinopse     = "";
             $this->quantidade  = "";
             $this->trailer     = "";
         } else {     
-            $this->action = "viewr/viewrAltera.php?codigo=".$_REQUEST['codigo'];
+            $this->action = "auxiliar.php?codigoAlt=".$_REQUEST['codigo'];
             $this->legenda = "Alterar";
             $query = "SELECT * FROM filme WHERE codigo = ".$_REQUEST['codigo'];
             $con = (new Conexao())->get_conexao(); 
@@ -51,7 +51,6 @@ class Filme{
     }
 
     public function imprimeFilmes(){
-        //$query = "SELECT * FROM filme"; 
         $con = (new Conexao())->get_conexao();
 
         $resultado = $con->prepare("SELECT * FROM filme");
@@ -60,20 +59,52 @@ class Filme{
             echo '<tr> 
             <td scope="row">'.$linha->titulo.'</td>
             <td><a class="btn btn-warning" href="adm.php?codigo='.$linha->codigo.'" role="button">Alterar</a></td>
-            <td><a class="btn btn-success" href="viewr/viewrImprime.php?opcao=2&codigo='.$linha->codigo.'" role="button" target="_blank">Imprimir</a></td>
-            <td><a class="btn btn-danger" href="viewr/viewrExclui.php?codigo='.$linha->codigo.'" role="button">Excluir</a></td>
+            <td><a class="btn btn-success" href="auxiliar.php?opcao=2&codigoImp='.$linha->codigo.'" role="button" target="_blank">Imprimir</a></td>
+            <td><a class="btn btn-danger" href="auxiliar.php?codigo='.$linha->codigo.'" role="button">Excluir</a></td>
             </tr>';
         }
     }
 
-    function excluirFilme(){
-        $codigo	= $_REQUEST['codigo'];	
+    function excluirFilme($codigo){
+        //$codigo	= $_REQUEST['codigo'];	
         $con = (new Conexao())->get_conexao();
         //query
         $query = "DELETE FROM filme WHERE codigo=".$codigo;
         $con->query($query);
         //$this->con->exclui($query);
-        header('Location:../adm.php');		
+        header('Location:adm.php');		
+    }
+
+    public function alterarFilme($dados){
+        $con = (new Conexao())->get_conexao();
+        $resultado = $con->prepare("UPDATE filme SET titulo=?, sinopse=?,quantidade=?,trailer=? where codigo=?");
+        $resultado->bindParam(1, $dados[0]);
+        $resultado->bindParam(2, $dados[1]);
+        $resultado->bindParam(3, $dados[2]);
+        $resultado->bindParam(4, $dados[3]);
+        $resultado->bindParam(5, $dados[4]);
+        try {
+            $resultado->execute();
+            header('Location:adm.php');
+        } catch (PDOException $erro) {
+            echo $erro -> getMessage();
+        }
+    }
+
+    public function incluirFilme($dados){
+        $con = (new Conexao())->get_conexao();
+        $resultado = $con->prepare("INSERT INTO filme(titulo, sinopse, quantidade,trailer) VALUES(?,?,?,?)");
+        $resultado->bindParam(1, $dados[0]);
+        $resultado->bindParam(2, $dados[1]);
+        $resultado->bindParam(3, $dados[2]);
+        $resultado->bindParam(4, $dados[3]);
+
+        try {
+            $resultado->execute();
+            header('Location:adm.php');
+        } catch (PDOException $erro) {
+            echo $erro -> getMessage();
+        }
     }
 
     public function getLegenda(){

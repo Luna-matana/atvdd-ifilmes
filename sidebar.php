@@ -4,6 +4,6 @@
     <a href="adm.php" class="nav-link" >Filmes</a>
     <a href="cliente.php" class="nav-link">Clientes</a>        
     <a href="funcionario.php" class="nav-link">Funcionarios</a>
-    <a href="viewr/sair.php" class="nav-link">Sair</a>
+    <a href="auxiliar.php?sair=1" class="nav-link">Sair</a>
 </nav>  
 <!-- /sidebar -->

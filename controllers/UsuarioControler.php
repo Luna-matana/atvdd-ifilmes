@@ -1,8 +1,8 @@
 <?php 
 require_once("models/Usuario.class.php");
 
-error_reporting(E_ALL);
-ini_set('display_errors', true);
+/*error_reporting(E_ALL);
+ini_set('display_errors', true);*/
 
 class UsuarioControler{
     private $email;

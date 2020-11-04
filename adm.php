@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', true);
+/*error_reporting(E_ALL);
+ini_set('display_errors', true);*/
 
 include_once("controllers/FilmeControler.php");
 $filme = new FilmeControler();
@@ -26,7 +26,7 @@ $filme = new FilmeControler();
 
   <!-- nav -->    	
   <div class="column-sm-4"> 
-   <?php include "sidebar.php"; ?> <!-- Barra lateral-->
+   <?php include "views/sidebar.php"; ?> <!-- Barra lateral-->
   </div>
   <!-- formulario -->
   <div class="column col-sm-7">
@@ -87,7 +87,7 @@ $filme = new FilmeControler();
     </tbody>                     	
   </table>                      
   <hr>
-    <a class="btn btn-info" href="<?php echo "viewr/viewrImprime.php?opcao=1"; ?>" target="_blank" role="button">Imprimir Listagem de Filmes</a>  
+    <a class="btn btn-info" href="<?php echo "auxiliar.php?opcao=1"; ?>" target="_blank" role="button">Imprimir Listagem de Filmes</a>  
   <hr>
   <!-- /lista -->
   <hr />

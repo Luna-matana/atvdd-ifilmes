@@ -1,6 +1,6 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', true);
+/*error_reporting(E_ALL);
+ini_set('display_errors', true);*/
 
 include_once("Conexao.php");
 
@@ -30,10 +30,10 @@ class Usuario{
                 $_SESSION['senha'] = $this->senha;
                 header('location:adm.php');
             } else {
-                header('location:../index.php');
+                session_unset();
+                session_destroy();
+                header('location:index.php');
             }
-        } else {
-            echo "deu tudo errado";
         }
     }
 }
