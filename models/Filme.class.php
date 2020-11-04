@@ -24,7 +24,6 @@ class Filme{
         } else {
             $this->retornaFilmes();
         }
-
     }
 
     private function retornaFilmes(){
@@ -46,7 +45,7 @@ class Filme{
             $this->titulofilme = $linha->titulo;
             $this->sinopse     = $linha->sinopse;
             $this->quantidade  = $linha->quantidade;
-            $this->trailer     = $linha->trailer;  
+            $this->trailer     = $linha->trailer; 
         }
     }
 

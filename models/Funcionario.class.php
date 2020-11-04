@@ -1,12 +1,12 @@
 <?php
 include_once("Conexao.php");
-include_once("Filme.class.php");
-class Cliente{
+//include_once("Filme.class.php");
+class funcionario{
     private $con;
-    private $nome = "";
-    private $cpf = "";
-    private $telefone = "";
-    private $endereco = "";
+    private $nome;
+    private $estado = "";
+    private $salario = "";
+    private $senha = "";
     private $email = "";
     private $action = "";
     private $legenda = "";
@@ -20,50 +20,50 @@ class Cliente{
     private function retornaFilmes(){
         //acesso ao banco e tabelas do sistema
         if(!isset($_REQUEST['codigo'])){
-            $this->action    = "ViewCliente.php?incluir=1";
+            $this->action    = "ViewFunc.php?incluir=1";
             $this->legenda   = "Incluir";
             $this->nome      = "";
-            $this->cpf       = "";
-            $this->telefone  = "";
-            $this->endereco  = "";
+            $this->estado    = "";
+            $this->salario   = "";
+            $this->senha     = "";
             $this->email     = "";
         } else {     
-            $this->action = "ViewCliente.php?codigoAlt=".$_REQUEST['codigo'];
+            $this->action = "ViewFunc.php?codigoAlt=".$_REQUEST['codigo'];
             $this->legenda = "Alterar";
-            $query = "SELECT * FROM cliente WHERE codigo = ".$_REQUEST['codigo'];
+            $query = "SELECT * FROM funcionario WHERE codigo = ".$_REQUEST['codigo'];
             $con = (new Conexao())->get_conexao(); 
             $result = $con->query($query);
             $linha = $result->fetch(PDO::FETCH_OBJ);
             $this->nome      = $linha->nome;
-            $this->endereco  = $linha->endereco;
-            $this->email     = $linha->email;
-            $this->cpf       = $linha->cpf;  
-            $this->telefone  = $linha->telefone;  
+            $this->estado  = $linha->estado;
+            $this->salario     = $linha->salario;
+            $this->senha       = $linha->senha;  
+            $this->email  = $linha->email;  
         }
     }
 
-    public function listaClientes(){
-        $resultado = $this->con->get_conexao()->prepare("SELECT * FROM cliente");
+    public function listafuncionarios(){
+        $resultado = $this->con->get_conexao()->prepare("SELECT * FROM funcionario");
         $resultado->execute();
         while($linha = $resultado->fetch(PDO::FETCH_OBJ)){        
-            echo '<tr> <td scope="row">'.$linha->nome.'</td> <td scope="row">'.$linha->cpf.'</td> <td scope="row">'.$linha->telefone.'</td> <td scope="row">'.$linha->endereco.'</td> <td scope="row">'.$linha->email.'</td><td><a class="btn btn-warning" href="clientes.php?codigo='.$linha->codigo.'" role="button">Alterar</a></td>
-            <td><a class="btn btn-danger" href="ViewCliente.php?codigo='.$linha->codigo.'" role="button">Excluir</a></td>
+            echo '<tr> <td scope="row">'.$linha->nome.'</td> <td scope="row">'.$linha->estado.'</td> <td scope="row">'.$linha->salario.'</td> <td scope="row">'.$linha->email.'</td> <td scope="row">'.$linha->senha.'</td><td><a class="btn btn-warning" href="funcionario.php?codigo='.$linha->codigo.'" role="button">Alterar</a></td>
+            <td><a class="btn btn-danger" href="ViewFunc.php?codigo='.$linha->codigo.'" role="button">Excluir</a></td>
             </tr>';
         }
     }
 
-    function excluirCliente($codigo){
+    function excluirfuncionario($codigo){
         //$codigo	= $_REQUEST['codigo'];	
         $con = (new Conexao())->get_conexao();
         //query
-        $query = "DELETE FROM cliente WHERE codigo=".$codigo;
+        $query = "DELETE FROM funcionario WHERE codigo=".$codigo;
         $con->query($query);
-        header('Location:clientes.php');		
+        header('Location:funcionario.php');		
     }
 
-    public function alterarCliente($dados){
+    public function alterarfuncionario($dados){
         $con = (new Conexao())->get_conexao();
-        $resultado = $con->prepare("UPDATE cliente SET nome=?, cpf=?,telefone=?,endereco=?,email=? where codigo=?");
+        $resultado = $con->prepare("UPDATE funcionario SET nome=?, estado=?,salario=?,email=?,senha=? where codigo=?");
         $resultado->bindParam(1, $dados[0]);
         $resultado->bindParam(2, $dados[1]);
         $resultado->bindParam(3, $dados[2]);
@@ -72,15 +72,15 @@ class Cliente{
         $resultado->bindParam(6, $dados[5]);
         try {
             $resultado->execute();
-            header('Location:clientes.php');
+            header('Location:funcionario.php');
         } catch (PDOException $erro) {
             echo $erro -> getMessage();
         }
     }
 
-    public function incluirCliente($dados){
+    public function incluirfuncionario($dados){
         $con = (new Conexao())->get_conexao();
-        $resultado = $con->prepare("INSERT INTO cliente(nome, cpf, telefone,endereco, email) VALUES(?,?,?,?,?)");
+        $resultado = $con->prepare("INSERT INTO funcionario(nome, estado, salario,email, senha) VALUES(?,?,?,?,?)");
         $resultado->bindParam(1, $dados[0]);
         $resultado->bindParam(2, $dados[1]);
         $resultado->bindParam(3, $dados[2]);
@@ -89,7 +89,7 @@ class Cliente{
 
         try {
             $resultado->execute();
-            header('Location:clientes.php');
+            header('Location:funcionario.php');
         } catch (PDOException $erro) {
             echo $erro -> getMessage();
         }
@@ -107,20 +107,20 @@ class Cliente{
         return $this->action;
     }
 
-    public function getEndereco(){
-        return $this->endereco;
+    public function getSenha(){
+        return $this->senha;
     }
 
-    public function getcpf(){
-        return $this->cpf;
+    public function getEstado(){
+        return $this->estado;
     }
 
     public function getEmail(){
         return $this->email;
     }
 
-    public function getTelefone(){
-        return $this->telefone;
+    public function getSalario(){
+        return $this->salario;
     }
 }
 ?>

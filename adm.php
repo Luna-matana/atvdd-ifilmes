@@ -26,7 +26,7 @@ $filme = new FilmeControler();
 
   <!-- nav -->    	
   <div class="column-sm-4"> 
-   <?php include "views/sidebar.php"; ?> <!-- Barra lateral-->
+   <?php include "sidebar.php"; ?> <!-- Barra lateral-->
   </div>
   <!-- formulario -->
   <div class="column col-sm-7">

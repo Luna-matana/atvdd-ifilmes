@@ -1,8 +1,8 @@
 <?php
 //biblioteca fpdf
 require_once("lib/fpdf.php");
+//include_once("../lib/fpdf.php");
 include_once("Conexao.php");
-//include_once("error.php");
 
 class Impressao{
 	private $con;
@@ -125,6 +125,112 @@ class Impressao{
 			//configura a fonte
 			$this->pdf->setFont('arial','B',12);
 			$this->pdf->Cell(0,20,$linha->trailer,0,1,'L');
+		}
+		$this->pdf->Output();
+	}
+
+	function imprimeTodosClientes(){
+        $dados = $this->con->get_conexao()->prepare("SELECT * FROM cliente");
+        try {
+            $dados->execute();
+        } catch (PDOException $erro) {
+            echo $erro -> getMessage();
+        }
+		$i = 0;
+		while($linha = $dados->fetch(PDO::FETCH_OBJ)){
+			//configura a fonte Label...........
+			$i++;
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Cliente ".$i),0,1,'L');
+			
+			//configura a fonte Label...........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Nome"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->nome,0,1,'L');
+			
+			//configura a fonte Label.........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("cpf"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->cpf,0,1,'L');
+
+			//configura a fonte Label.........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Telefone"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->telefone,0,1,'L');
+
+			//configura a fonte Label.........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Endereço"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->endereco,0,1,'L');
+
+			//configura a fonte Label.........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("E-mail"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->email,0,1,'L');
+		}
+		$this->pdf->Output();
+	}
+
+	function imprimeTodosFuncionarios(){
+        $dados = $this->con->get_conexao()->prepare("SELECT * FROM funcionario");
+        try {
+            $dados->execute();
+        } catch (PDOException $erro) {
+            echo $erro -> getMessage();
+        }
+		$i = 0;
+		while($linha = $dados->fetch(PDO::FETCH_OBJ)){
+			//configura a fonte Label...........
+			$i++;
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Funcionario ".$i),0,1,'L');
+			
+			//configura a fonte Label...........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Nome"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->nome,0,1,'L');
+			
+			//configura a fonte Label.........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Estado"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->estado,0,1,'L');
+
+			//configura a fonte Label.........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("Salário"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->salario,0,1,'L');
+
+			//configura a fonte Label.........
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(70,20,$this->converte("E-mail"),0,0,'L');
+		
+			//configura a fonte
+			$this->pdf->setFont('arial','B',12);
+			$this->pdf->Cell(0,20,$linha->email,0,1,'L');
 		}
 		$this->pdf->Output();
 	}

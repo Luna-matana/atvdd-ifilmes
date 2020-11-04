@@ -2,8 +2,8 @@
 /*error_reporting(E_ALL);
 ini_set('display_errors', true);*/
 
-include_once("controllers/ClienteControler.php");
-$cliente = new ClienteControler();
+include_once("controllers/FuncionarioControler.php");
+$funcionario = new funcionarioControler();
 ?>
 
 <!DOCTYPE html>
@@ -37,35 +37,35 @@ $cliente = new ClienteControler();
    <?php include "sidebar.php"; ?> <!-- Barra lateral-->
   </div>
   <!-- formulario -->
-  <?php  include_once("views/form.php");?>
+  <?php  include_once("views/formFunc.php");?>
     <div class="column col-sm-7">
         <div class="container-fluid">  
             <div class="page-header text-muted divider">
-            Clientes Cadastrados
+            funcionarios Cadastrados
             </div>
         </div>    
 
 
-        <table class="table table-striped" id="tableCliente" >
+        <table class="table table-striped" id="tablefuncionario" >
             <thead>
                 <tr>
                 <th scope="col" class="col-sm-3">Nome</th>
-                <th scope="col" class="col-sm-3">CPF</th>
-                <th scope="col" class="col-sm-3">Telefone</th>
-                <th scope="col" class="col-sm-3">Endereço</th>
+                <th scope="col" class="col-sm-3">Estado</th>
+                <th scope="col" class="col-sm-3">Email</th>
+                <th scope="col" class="col-sm-3">Senha</th>
                 <th scope="col" class="col-sm-3" colspan="3">E-mail</th>
                 </tr>
                 </thead>
                 <tbody>
                     <?php                       
-                        $cliente->getClientes();  //Lista filmes no banco    
+                        $funcionario->getfuncionarios();  //Lista filmes no banco    
                     ?>   
                 </tbody>                     	
         </table>
 
 
         <hr>
-          <a class="btn btn-info" href="<?php echo "ViewCliente.php?opcao=1"; ?>" target="_blank" role="button">Imprimir Clientes</a>  
+          <a class="btn btn-info" href="<?php echo "ViewFunc.php?opcao=1"; ?>" target="_blank" role="button">Imprimir funcionarios</a>  
         <hr>
 
     <?php include "rodape.php"; ?>
