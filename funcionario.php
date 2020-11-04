@@ -51,9 +51,9 @@ $funcionario = new funcionarioControler();
                 <tr>
                 <th scope="col" class="col-sm-3">Nome</th>
                 <th scope="col" class="col-sm-3">Estado</th>
+                <th scope="col" class="col-sm-3">Salario</th>
                 <th scope="col" class="col-sm-3">Email</th>
-                <th scope="col" class="col-sm-3">Senha</th>
-                <th scope="col" class="col-sm-3" colspan="3">E-mail</th>
+                <th scope="col" class="col-sm-3" colspan="3">Senha</th>
                 </tr>
                 </thead>
                 <tbody>
