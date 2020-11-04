@@ -34,7 +34,7 @@ $filme = new FilmeControler();
       <form class="form-horizontal" action="<?php echo $filme->getAction(); ?>" method="post"> 
         <fieldset>
           <!-- Form Name -->
-          <legend><?php echo $filme->getLegenda();?> Filme</legend>
+          <legend><?php echo $filme->getLegenda();?> !</legend>
 
           <!-- Text input-->
           <div class="form-group">
