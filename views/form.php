@@ -3,7 +3,7 @@
 <form class="form-horizontal" action="<?php echo $cliente->getAction();?>" method="post"> 
         <fieldset>
           <!-- Form Name -->
-          <legend><?php echo $cliente->getLegenda();?> Filme</legend>
+          <legend><?php echo $cliente->getLegenda();?> !</legend>
 
           <!-- Text input-->
           <div class="form-group">

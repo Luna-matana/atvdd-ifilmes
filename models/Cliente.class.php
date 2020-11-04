@@ -21,7 +21,7 @@ class Cliente{
         //acesso ao banco e tabelas do sistema
         if(!isset($_REQUEST['codigo'])){
             $this->action    = "ViewCliente.php?incluir=1";
-            $this->legenda   = "Incluir";
+            $this->legenda   = "Incluir Cliente";
             $this->nome      = "";
             $this->cpf       = "";
             $this->telefone  = "";

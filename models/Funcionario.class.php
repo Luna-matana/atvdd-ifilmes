@@ -21,7 +21,7 @@ class funcionario{
         //acesso ao banco e tabelas do sistema
         if(!isset($_REQUEST['codigo'])){
             $this->action    = "ViewFunc.php?incluir=1";
-            $this->legenda   = "Incluir";
+            $this->legenda   = "Incluir Funcionário";
             $this->nome      = "";
             $this->estado    = "";
             $this->salario   = "";
