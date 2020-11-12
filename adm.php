@@ -6,6 +6,11 @@ include_once("controllers/FilmeControler.php");
 $filme = new FilmeControler();
 ?>
 
+<?php
+echo "ola mundo";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
