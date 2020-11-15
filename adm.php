@@ -4,6 +4,11 @@ include_once("classes/Funcoes.class.php");
  include "classes/error.php";
 $funcao = new Funcoes();
 ?>
+
+<?php 
+  echo "bolsonaro otário";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
